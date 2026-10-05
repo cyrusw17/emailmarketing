@@ -17,10 +17,9 @@ One sequence skeleton, one gap per lead. The gap is checked by script for that e
 | `{{fix_line}}` | a short quote request form near the top that works on a phone and sends straight to you | Email 2 |
 | `{{second_gap_sentence}}` | While I was there I'd also show starting prices. | Empty when only one gap was found |
 | `{{season_hook}}` | " before the spring rush" | Exterior, lawn, real estate; empty for detailing and commercial |
-| `{{rating}}`, `{{review_count}}` | 5.0, 130 | Only used inside gap lines |
 
 ## Gap lines (exact text, by niche)
-Priority decides which one leads: request form, then reviews, then the niche's next gaps (detailing: prices, phones, before/after; exterior: before/after, prices, phones; lawn: phones, prices). "Reviews" counts only when the shop has 10+ Google reviews at 4.5+ stars.
+Priority decides which one leads (marketing review, 2026-10-05): request form, then not built for phones, then reviews, then exterior before/after, then prices (detailing, exterior, lawn only), then tap-to-call, then not secure. Commercial and real estate never use prices. Every gap is confirmed in a phone-sized browser; if the top one fails, the next confirmed one leads. "Reviews" counts only when the shop has 10+ Google reviews at 4.5+ stars.
 
 | Gap | Line |
 |---|---|
@@ -29,7 +28,7 @@ Priority decides which one leads: request form, then reviews, then the niche's n
 | request_form, lawn | ...so homeowners have to call and catch you between yards |
 | request_form, commercial | there's no way to request a walkthrough or a bid on your site, so a facility manager comparing companies has to call just to get started |
 | request_form, real estate | there's no way for a seller to ask for a home value on your site, so they have to call or email you cold |
-| reviews | you have {rating} stars from {count} Google reviews, and none of them show on your site, which is the first thing a {homeowner / car owner / facility manager / seller} looks for |
+| reviews | you've got plenty of strong Google reviews, but none of them show on your site, and reviews are one of the first things a {homeowner / car owner / facility manager / seller} checks |
 | prices, detailing | your site doesn't list prices, so people who want a number have to call or message first |
 | prices, exterior | your site doesn't show a single starting price, so people who want a number for a house wash may call someone who does |
 | prices, lawn | your site doesn't give even a starting price, so people who want a ballpark for mowing tend to move on to the next company |
@@ -61,9 +60,9 @@ Subject B: `{{gap_subject}}`
 
 ## Email 3 (day 9, same thread), live offer only
 
-> Hi {{first_name}}, here's how it works: $99 to start, I build the new site, you see it before paying the $300 ($399 all in, the founding price for our first 25 clients), and if you don't like it you get the $99 back. Monthly plans start at $99, only once it's live.
+> Hi {{first_name}}, here's how it works: $99 to start, I build the new site, you see it before paying the $300 (so $399 for the build, the founding price for our first 25 clients), and if you don't like it you get the $99 back. Monthly plans start at $99, only once it's live.
 >
-> Worth a look for {{short_name}}{{season_hook}}?
+> Want me to mock one up for {{short_name}}{{season_hook}}?
 
 No links and no HTML in any step (Cyrus, 2026-10-05). Mockups are built only for people who reply yes, so no email says one already exists.
 
@@ -77,7 +76,7 @@ Cyrus Wilburn, GroundWork-Web
 {postal address, chosen by Cyrus}
 This is a sales email. Reply "no thanks" and I won't email again.
 ```
-Plus Smartlead's unsubscribe link/header on.
+Plus Smartlead's List-Unsubscribe header on. No unsubscribe link in the body (no links rule); the footer's reply line covers CAN-SPAM.
 
 ## Commercial cleaning and real estate wording
 Email 1 swaps "turns a visitor into a booked job" for "turns a visitor into a bid request" (commercial) or "turns a visitor into a listing appointment" (real estate). Email 3 is the same offer. Load them as separate Smartlead campaigns so the swap is plain text, not a merge field.

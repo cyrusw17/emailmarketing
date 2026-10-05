@@ -8,13 +8,14 @@ Read all of this before touching Smartlead.
 3. **No HTML, no images, no links** in any email (Cyrus, 2026-10-05). Plain text only.
 4. **Never send from groundwork-web.com.** Only from the secondary sending domains Cyrus buys, each warmed for 3 to 4 weeks first.
 5. Keep Smartlead's default import protections on: skip the global block list, unsubscribed leads and bounced leads.
-6. Lead files contain business contact data. Don't copy them anywhere else, and delete them from any machine you downloaded them to when you're done.
+6. **Purge by 2026-11-03.** The lead CSVs come partly from Google Places data and fall under its 30-day caching rule. Delete `leads/smartlead/` from this repo by 2026-11-03 unless the leads are re-sourced, and scrub it from git history too if the repo is ever made public.
+7. Lead files contain business contact data. Don't copy them anywhere else, and delete them from any machine you downloaded them to when you're done.
 
 ## What's in this repo
 | Path | What |
 |---|---|
 | `sequences/gap-sequences.md` | The 4-step sequence, every gap sentence, merge fields |
-| `leads/smartlead/<campaign>.csv` | One file per Smartlead campaign (added once the repo is private) |
+| `leads/smartlead/<campaign>.csv` | One file per Smartlead campaign. Google fields (phone, rating, review count, place ID) are left out on purpose |
 | `leads/summary.md` | Lead counts by niche, segment and gap (added with the leads) |
 | `templates/smartlead-import-example.csv` | Column layout with one invented row |
 
@@ -48,10 +49,9 @@ For each file in `leads/smartlead/`:
 | `last_name` | Last Name |
 | `company_name` | Company Name |
 | `website` | Website |
-| `phone_number` | Phone Number |
 | `location` | Location |
-| `short_name`, `city`, `service`, `gap_line`, `gap_subject`, `fix_line`, `second_gap_sentence`, `season_hook`, `rating`, `review_count`, `niche`, `gap`, `campaign` | Custom field, same name |
-| `name_guess`, `state`, `second_gap`, `email_type`, `email_status`, `gap_confirmed`, `send_ready`, `place_id` | Do not import (or import as custom fields and never use them in copy) |
+| `short_name`, `city`, `service`, `gap_line`, `gap_subject`, `fix_line`, `second_gap_sentence`, `season_hook`, `niche`, `gap`, `campaign` | Custom field, same name |
+| `name_guess`, `state`, `second_gap`, `email_type`, `email_status`, `gap_confirmed`, `send_ready` | Do not import (or import as custom fields and never use them in copy) |
 
 The custom field names must match the `{{...}}` variables in the copy exactly. Smartlead leaves a blank field empty with no fallback, which is why optional text (`second_gap_sentence`, `season_hook`) is a whole sentence or phrase.
 
@@ -79,7 +79,7 @@ Wording swaps by niche (edit the copy in that campaign only):
 
 ## Step 5. Settings for every campaign
 - Plain text. Open tracking **off**. Link tracking **off**.
-- Unsubscribe: turn on Smartlead's unsubscribe header (List-Unsubscribe). Treat any reply like "no thanks", "stop" or "remove" as an unsubscribe the same day.
+- Unsubscribe: turn on Smartlead's List-Unsubscribe header only. Do **not** add an unsubscribe link in the body (no links rule); the footer's "no thanks" line covers CAN-SPAM. Treat any reply like "no thanks", "stop" or "remove" as an unsubscribe the same day.
 - Stop sending to a lead on any reply. Out-of-office replies pause the lead, they don't count as replies.
 - Schedule: Monday to Friday, 8:00 to 11:00 AM in the lead's time zone. Start new leads Tuesday to Thursday.
 - Max new leads per day per campaign: split about 100 new leads a day across all campaigns (6 inboxes x 15 to 20).
