@@ -7,8 +7,9 @@ One sequence skeleton, one gap per lead. The gap is checked by script for that e
 ## Merge fields (all in the CSV)
 | Field | Example | Notes |
 |---|---|---|
-| `{{first_name}}` | there | We have no owner names yet; "there" until a name is found. Never guess from the address. |
-| `{{company_name}}` | Example Pressure Washing | Google name, LLC/Inc and taglines stripped |
+| `{{first_name}}` | Brent / there | A name only when the email's own local part is a name that also appears on the shop's site (117 leads); otherwise "there" |
+| `{{company_name}}` | Example Pressure Washing | Google name, LLC/Inc and taglines stripped (email 1 body) |
+| `{{short_name}}` | Example Pressure Washing | Shorter name for subjects and emails 2-4: drops " - location" and "And Detail"-style tails |
 | `{{city}}` | Pasadena | |
 | `{{service}}` | pressure washing | From name and category: window/gutter/roof cleaning, soft washing, landscaping, mobile detailing |
 | `{{gap_line}}` | there's no way to ask for a quote on your site, so homeowners have to call and catch you between jobs | One per lead, the highest-priority gap found |
@@ -43,7 +44,7 @@ Never used as a lead gap: slow pages (our check can't match PageSpeed; the old "
 
 ## Email 1 (day 1), about 60 words, no links
 
-Subject A: `{{company_name}} site`
+Subject A: `{{short_name}} site`
 Subject B: `{{gap_subject}}`
 
 > Hi {{first_name}},
@@ -56,19 +57,19 @@ Subject B: `{{gap_subject}}`
 
 > Hi {{first_name}}, to be specific, I'd add {{fix_line}}. {{second_gap_sentence}}
 >
-> Should I put a mockup together for {{company_name}}?
+> Should I put a mockup together for {{short_name}}?
 
 ## Email 3 (day 9, same thread), live offer only
 
-> Hi {{first_name}}, here's how it works: $99 to start, I build the new site, you see it before paying the $300, and if you don't like it you get the $99 back. Monthly plans start at $99, only once it's live.
+> Hi {{first_name}}, here's how it works: $99 to start, I build the new site, you see it before paying the $300 ($399 all in, the founding price for our first 25 clients), and if you don't like it you get the $99 back. Monthly plans start at $99, only once it's live.
 >
-> Worth a look for {{company_name}}{{season_hook}}?
+> Worth a look for {{short_name}}{{season_hook}}?
 
 No links and no HTML in any step (Cyrus, 2026-10-05). Mockups are built only for people who reply yes, so no email says one already exists.
 
 ## Email 4 (day 15, breakup), about 30 words
 
-> Hi {{first_name}}, I'll leave it here. If you ever want a second set of eyes on {{company_name}}'s site, just reply and I'll send over a free check.
+> Hi {{first_name}}, I'll leave it here. If you ever want a second set of eyes on {{short_name}}'s site, just reply and I'll send over a free check.
 
 ## Footer on every email
 ```

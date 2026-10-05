@@ -4,7 +4,7 @@ Read all of this before touching Smartlead.
 
 ## Hard rules
 1. **Do not launch, start, schedule or resume any campaign.** Build everything as a draft (paused) campaign. Nothing is sent until Cyrus gives the go-ahead in writing in the project. That covers test sends to real leads too. Send test emails only to Cyrus's own address.
-2. **Never import a row whose `send_ready` is not `yes`.** `send_ready=yes` means the address passed verification (Reoon or MillionVerifier status `valid`). Every row today is `unverified`, so step 2 below comes first.
+2. **Never import a row whose `send_ready` is not `yes`, and never one whose `gap_confirmed` is not `yes`.** `send_ready=yes` means the address passed verification (Reoon or MillionVerifier status `valid`). Every row today is `unverified`, so step 2 below comes first.
 3. **No HTML, no images, no links** in any email (Cyrus, 2026-10-05). Plain text only.
 4. **Never send from groundwork-web.com.** Only from the secondary sending domains Cyrus buys, each warmed for 3 to 4 weeks first.
 5. Keep Smartlead's default import protections on: skip the global block list, unsubscribed leads and bounced leads.
@@ -50,19 +50,19 @@ For each file in `leads/smartlead/`:
 | `website` | Website |
 | `phone_number` | Phone Number |
 | `location` | Location |
-| `city`, `service`, `gap_line`, `gap_subject`, `fix_line`, `second_gap_sentence`, `season_hook`, `rating`, `review_count`, `niche`, `gap`, `campaign` | Custom field, same name |
-| `name_guess`, `state`, `second_gap`, `email_type`, `email_status`, `send_ready`, `place_id` | Do not import (or import as custom fields and never use them in copy) |
+| `short_name`, `city`, `service`, `gap_line`, `gap_subject`, `fix_line`, `second_gap_sentence`, `season_hook`, `rating`, `review_count`, `niche`, `gap`, `campaign` | Custom field, same name |
+| `name_guess`, `state`, `second_gap`, `email_type`, `email_status`, `gap_confirmed`, `send_ready`, `place_id` | Do not import (or import as custom fields and never use them in copy) |
 
 The custom field names must match the `{{...}}` variables in the copy exactly. Smartlead leaves a blank field empty with no fallback, which is why optional text (`second_gap_sentence`, `season_hook`) is a whole sentence or phrase.
 
-4. `first_name` is `there` on every row, so the greeting reads "Hi there,". Only a human may replace it with `name_guess`.
+4. `first_name` is a real first name only where it was confirmed on the shop's own site; otherwise `there`, so the greeting reads "Hi there,".
 
 ## Step 4. Sequence
 Paste the copy from `sequences/gap-sequences.md` exactly.
 
 | Step | Delay after previous | Subject |
 |---|---|---|
-| 1 | Day 1 | Variant A: `{{company_name}} site` / Variant B: `{{gap_subject}}` (50/50) |
+| 1 | Day 1 | Variant A: `{{short_name}} site` / Variant B: `{{gap_subject}}` (50/50) |
 | 2 | 3 days | Blank, so it sends as a reply in the same thread |
 | 3 | 5 days | Blank (same thread) |
 | 4 | 6 days | Blank (same thread) |
