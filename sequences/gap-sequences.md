@@ -1,5 +1,7 @@
 # Gap sequences (Smartlead copy)
 
+**Send rule (team lead, 2026-10-06): a lead is sent only when `gap_confirmed=yes` AND Reoon says `valid` (or `safe` in Power mode). Never-gap-checked leads are not sent. See CURSOR-IMPORT.md in the emailmarketing repo.**
+
 Status: **draft, nothing sent, nothing loaded.** Built on the GroundWork-Web cold email playbook (sections 4, 5, 9). Owner of final copy: Cold email specialist thread. Prices are the approved price list only.
 
 One sequence skeleton, one gap per lead. The gap is checked by script for that exact shop (site audit kept in the project files, not in this repo) and the full sentence lives in the CSV (`{{gap_line}}`), because Smartlead has no if/else and leaves blank fields empty. So every merge field is either always filled or is a whole optional sentence.

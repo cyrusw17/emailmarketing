@@ -3,6 +3,8 @@
 Paste this whole file into Cursor as the task. Run it from a checkout of this repo (`cyrusw17/emailmarketing`, branch `claude/project-thread-4ke6l4`). Use the scripts in `tools/`; don't write new ones.
 
 ## 0. Hard rules
+**Send rule (team lead, 2026-10-06): a lead is sent only when `gap_confirmed=yes` AND Reoon says `valid` (Reoon Power mode calls this `safe`; both count). Every other address, including any lead that was never gap-checked, is not sent. That means this file's merge, gap check and Reoon steps run before any more volume.**
+
 1. **Nothing gets sent.** Never start, schedule, resume or "launch" a campaign, in the API or the UI. Campaigns stay draft or paused until Cyrus starts them himself.
 2. Keys only in environment variables: `SMARTLEAD_API_KEY` (and a Reoon key if you use the API). Never print them, write them to a file or commit them.
 3. **Never commit lead data.** All output goes to `~/gw-leads/campaigns/`, outside the repo.
@@ -68,4 +70,11 @@ For every campaign the script created (existing ones already have this):
 3. **Settings:** plain text, open tracking off, link tracking off, List-Unsubscribe header on (no unsubscribe link in the body), stop on reply, Mon to Fri 8 to 11 AM in the lead's time zone, 15 to 20 emails per inbox per day, spread across all warmed inboxes.
 4. Preview 5 leads per campaign. Every `{{...}}` must fill in, with no blank "Hi ,". Open 2 of those sites and confirm the gap sentence is still true.
 5. Send one test of each campaign to Cyrus's own address only.
-6. **Leave it paused.** Report back the campaign names, lead counts per campaign, how many were removed and why, and the verification numbers.
+6. **Apply the send rule to campaigns that already exist in Smartlead**, including any set up before this file. Export each campaign's leads and compare them with the `send_ready=yes` rows in `~/gw-leads/campaigns/smartlead/*.csv`. In a draft or paused campaign, pause every lead that isn't on that list (Smartlead's per-lead pause, which can be undone). In an active campaign, change nothing: list those leads and ask Cyrus whether to pause them.
+7. **Leave it paused.** Report back the campaign names, lead counts per campaign, how many were removed and why, and the verification numbers.
+
+## Marketing skills behind this campaign
+- `marketing:campaign-plan`: segments, one campaign per niche and gap, success metric (positive replies per contact).
+- `marketing:email-sequence`: the 4-step sequence, timing, exit and suppression rules in `sequences/gap-sequences.md`.
+- `marketing:brand-review`: copy check against the brand voice, approved prices only, no unbacked claims.
+- The cold email playbook (plain text, no links, CAN-SPAM footer) from the cold email specialist, then team lead review and the consultant's A+ grade.

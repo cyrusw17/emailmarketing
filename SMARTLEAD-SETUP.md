@@ -3,8 +3,10 @@
 Read all of this before touching Smartlead.
 
 ## Hard rules
+**Send rule (team lead, 2026-10-06): a lead is sent only when `gap_confirmed=yes` AND Reoon says `valid` (Reoon Power mode calls this `safe`; both count). Every other address, including any lead that was never gap-checked, is not sent. Run CURSOR-IMPORT.md (merge, gap check, Reoon) before any more volume.**
+
 1. **Do not launch, start, schedule or resume any campaign.** Build everything as a draft (paused) campaign. Nothing is sent until Cyrus gives the go-ahead in writing in the project. That covers test sends to real leads too. Send test emails only to Cyrus's own address.
-2. **Never import a row whose `send_ready` is not `yes`, and never one whose `gap_confirmed` is not `yes`.** `send_ready=yes` means the address passed verification (Reoon or MillionVerifier status `valid`). Every row today is `unverified`, so step 2 below comes first.
+2. **Never import a row whose `send_ready` is not `yes`, and never one whose `gap_confirmed` is not `yes`.** `send_ready=yes` means the address passed verification (Reoon `valid`, or `safe` in Power mode). Every row today is `unverified`, so step 2 below comes first.
 3. **No HTML, no images, no links** in any email (Cyrus, 2026-10-05). Plain text only.
 4. **Never send from groundwork-web.com.** Only from the secondary sending domains Cyrus buys, each warmed for 3 to 4 weeks first.
 5. Keep Smartlead's default import protections on: skip the global block list, unsubscribed leads and bounced leads.
@@ -32,7 +34,7 @@ Campaign = niche + the main thing that lead's website lacks, for example `exteri
 - Daily sending limit per inbox: **15 to 20 cold emails**. Week 1 of sending: 20 per domain per day total, then raise to 15 to 20 per inbox.
 
 ## Step 2. Verify addresses
-- Run every `email` in `leads/smartlead/*.csv` through Reoon (or MillionVerifier).
+- Run every `email` in `leads/smartlead/*.csv` through Reoon.
 - Keep only `valid`. Set `email_status=valid` and `send_ready=yes` on those rows; drop `invalid` and `disposable`; drop `catch_all` and `unknown` too (team lead decision).
 - Stop and report if more than 3% come back invalid in one file.
 
